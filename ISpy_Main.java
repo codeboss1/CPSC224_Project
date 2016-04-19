@@ -131,11 +131,12 @@ public class ISpy_Main extends JFrame implements ActionListener {
 		static Timer timer = new Timer();
 		private static int flag = 0;
 		
+		
 		public static void doTime(){
 		time = 300;
 		flag++;
 
-		if(flag < 1){
+		if(flag < 2){
 				timer.scheduleAtFixedRate(new TimerTask() {
 					@Override
 					public void run() {
@@ -168,6 +169,7 @@ public class ISpy_Main extends JFrame implements ActionListener {
 		}
 		
 		public static void calcScore(){
+			miss = miss + ISpy_Main2.score.calc_miss() + ISpy_Main3.score.calc_miss() + ISpy_Main4.score.calc_miss();
 			score = (Time.time*5)-(miss*10);
 		}
 
