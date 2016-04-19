@@ -148,14 +148,18 @@ public class ISpy_Main2 extends JFrame implements ActionListener {
 	
 	public static class score{
 		static int score = 0;
-		static int miss = 0;
+		static int miss1 = 0;
 		
 		public static void miss_score(){
-			miss++;
+			miss1++;
+		}
+		
+		public static int calc_miss(){
+			return miss1;
 		}
 		
 		public static void calcScore(){
-			score = (Time.time*5)-(miss*10);
+			score = (Time.time*5)-(miss1*10);
 		}
 
 		public static void PrintScore() {
