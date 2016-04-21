@@ -82,32 +82,32 @@ public abstract class mainMenu extends JFrame implements ActionListener{
 		userbutton.setText("Change User");
 		userbutton.setBackground(new Color(131, 250, 20));
 		userbutton.setPreferredSize(new Dimension(175, 50));
-		userbutton.setFont(new Font("Arial", Font.PLAIN, 20));
+		userbutton.setFont(new Font("Impact", Font.PLAIN, 20));
 
 				
 		//create button for tic tac toe
 		tictactoeButton.setText("Tic-Tac-Toe");
 		tictactoeButton.setBackground(new Color(131, 250, 20));
 		tictactoeButton.setPreferredSize(new Dimension(175, 50));
-		tictactoeButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		tictactoeButton.setFont(new Font("Impact", Font.PLAIN, 20));
 		
 		//create button for word search
 		wordSearchButton.setText("Word Search");
 		wordSearchButton.setBackground(new Color(131, 250, 20));
 		wordSearchButton.setPreferredSize(new Dimension(175, 50));
-		wordSearchButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		wordSearchButton.setFont(new Font("Impact", Font.PLAIN, 20));
 		
 		//create button for eye spy
-		ISpyButton.setText("Eye Spy");
+		ISpyButton.setText("I-Spy");
 		ISpyButton.setBackground(new Color(131, 250, 20));
 		ISpyButton.setPreferredSize(new Dimension(175, 50));
-		ISpyButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		ISpyButton.setFont(new Font("Impact", Font.PLAIN, 20));
 		
 		//create button for high scores
 		highScoresButton.setText("High Scores");
 		highScoresButton.setBackground(new Color(131, 250, 20));
 		highScoresButton.setPreferredSize(new Dimension(175, 50));
-		highScoresButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		highScoresButton.setFont(new Font("Impact", Font.PLAIN, 20));
 	}
 	
 	//add buttons to panel
@@ -123,7 +123,7 @@ public abstract class mainMenu extends JFrame implements ActionListener{
 	
 	//set layout, font and size of title, set location 
 	private static void setFrame(){
-		label.setFont(new Font("Arial", Font.PLAIN, 50));
+		label.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 50));
 		//layout
 		panel.setLayout(new FlowLayout());
 		panel.setBackground(new Color(186, 165, 232));frame.add(panel);
