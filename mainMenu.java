@@ -53,7 +53,7 @@ public abstract class mainMenu extends JFrame implements ActionListener{
 		highScoresButton.addActionListener(new ActionListener(){
 		    @Override
 		    public void actionPerformed(ActionEvent ev) {
-		    	Highscores.getScores();
+		    	Highscores.main(null);
 		    }
 		});
 		
