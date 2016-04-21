@@ -2,16 +2,19 @@ package gameHub;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class mainMenu{
+public abstract class mainMenu extends JFrame implements ActionListener{
 	static JPanel panel = new JPanel();
 	static JFrame frame = new JFrame("Game Hub");
 	static JLabel label = new JLabel("GAME HUB");
-	static JButton button1  = new JButton();
-	static JButton button2 = new JButton();
-	static JButton button4 = new JButton();
-	static JButton button3 = new JButton();
+	static JButton tictactoeButton  = new JButton();
+	static JButton wordSearchButton = new JButton();
+	static JButton ISpyButton = new JButton();
+	static JButton highScoresButton = new JButton();
 	static JButton userbutton = new JButton();
 	
 	public static void main(String s[]) {
@@ -23,8 +26,23 @@ public class mainMenu{
 		addButton();
 		setFrame();
 		
+		tictactoeButton.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ev) {
+		    	new MainFrame(1);                
+		    }
+		});
+		wordSearchButton.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ev) {
+		    	wordsearch w1 = new wordsearch();
+				w1.createBoard();                   
+		    }
+		});
+		
 		
 	}
+	
 
 	private static void createButton() {
 		//create button to change user
@@ -32,29 +50,28 @@ public class mainMenu{
 		userbutton.setBackground(new Color(131, 250, 20));
 				
 		//create button for tic tac toe
-		button1.setLayout(null);
-		button1.setText("Tic-Tac-Toe");
-		button1.setBackground(new Color(131, 250, 20));
+		tictactoeButton.setText("Tic-Tac-Toe");
+		tictactoeButton.setBackground(new Color(131, 250, 20));
 		
 		//create button for word search
-		button2.setText("Word Search");
-		button2.setBackground(new Color(131, 250, 20));
+		wordSearchButton.setText("Word Search");
+		wordSearchButton.setBackground(new Color(131, 250, 20));
 		
 		//create button for eye spy
-		button3.setText("Eye Spy");
-		button3.setBackground(new Color(131, 250, 20));
+		ISpyButton.setText("Eye Spy");
+		ISpyButton.setBackground(new Color(131, 250, 20));
 		
 		//create button for high scores
-		button4.setText("High Scores");
-		button4.setBackground(new Color(131, 250, 20));
+		highScoresButton.setText("High Scores");
+		highScoresButton.setBackground(new Color(131, 250, 20));
 	}
 	private static void addButton(){
 		//add all buttons to panel
 		panel.add(label);
-		panel.add(button1);	
-		panel.add(button2);
-		panel.add(button3);
-		panel.add(button4);
+		panel.add(tictactoeButton);	
+		panel.add(wordSearchButton);
+		panel.add(ISpyButton);
+		panel.add(highScoresButton);
 		panel.add(userbutton);
 	}
 	
