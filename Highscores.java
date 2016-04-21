@@ -1,3 +1,4 @@
+package gameHub;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.io.BufferedReader;
@@ -53,7 +54,7 @@ public class Highscores {
 		try {
 			String sCurrentLine;
 
-			br = new BufferedReader(new FileReader("C:/Users/soare/java/workspace/Project_all/highscores.txt"));
+			br = new BufferedReader(new FileReader("D:/workspace/gameHub/highscores.txt"));
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				
