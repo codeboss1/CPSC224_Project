@@ -180,7 +180,7 @@ public class ISpy_Main extends JFrame implements ActionListener {
 		
 		public static void passScore(){
 			endofgame a = new endofgame();
-			a.endOfGameWindow(score, "Dom");
+			a.endOfGameWindow(score, Users.getUser(), 3);
 		}
 	}
 	

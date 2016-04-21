@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 public class Users {
 
-	private String name;
+	private static String name;
 	public Users(){
 		
 	}
@@ -15,19 +15,8 @@ public class Users {
    	 
 	}
 	
-	public String getUser(){
+	public static String getUser(){
 		return name;
 	}
 	
-	/*
-	 public static void main(String[] args) {
-	
-		Users test1 = new Users();
-		test1.setUser();
-		System.out.println(test1.getUser());
-	}
-   */
-	
-	
-
 }

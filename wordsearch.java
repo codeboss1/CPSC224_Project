@@ -5,31 +5,31 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class wordsearch extends JFrame{
+public class wordsearch extends JFrame {
 
-String[][] searchtable = new String[6][6];
-String[] wordsList = {"Black", "Pink", "Blue", "Red", "Green", "White"};
-int[] wordFound = new int[6];
-private Timer gameTimer = null;
-private int timePlayed = 0;
+	String[][] searchtable = new String[6][6];
+	String[] wordsList = { "Black", "Pink", "Blue", "Red", "Green", "White" };
+	int[] wordFound = new int[6];
+	private int timePlayed = 3200;
 
-private JLabel positionLabel;
-private JButton resetButton;
-private static int gridSize = 6;
-public static String pressed;
-public int whichPressed = 0;
-public static String pressed1;
-public static String pressed2;
-private Boolean gameDone = false;
-private String username1;
+	private JLabel positionLabel;
+	private JLabel timerTop;
+	private JButton resetButton;
+	private static int gridSize = 6;
+	public static String pressed;
+	public int whichPressed = 0;
+	public static String pressed1;
+	public static String pressed2;
+	private Boolean gameDone = false;
+	private String username1;
+	private int gameID = 1;
 
-
-	public Boolean gameFinished() 
-	{
+	public Boolean gameFinished() {
 		return gameDone;
 	}
+
 	public wordsearch() {
-		
+
 		searchtable[0][0] = "K";
 		searchtable[1][0] = "N";
 		searchtable[2][0] = "I";
@@ -69,131 +69,105 @@ private String username1;
 	}
 
 	@SuppressWarnings("null")
-	public void createBoard(String username)
-	{
+	public void createBoard(String username) {
 		username1 = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel contentPane = new JPanel();
-        contentPane.setLayout(new BorderLayout(0,0));
-        final JLabel words = new JLabel();
-       
-       
+		JPanel contentPane = new JPanel();
+		contentPane.setLayout(new BorderLayout(0, 0));
+		final JLabel words = new JLabel();
 
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(gridSize, gridSize));
+		for (int i = 0; i < gridSize; i++) {
+			for (int j = 0; j < gridSize; j++) {
+				JButton button = new JButton(searchtable[j][i]);
+				button.setPreferredSize(new Dimension(50, 50));
+				button.setActionCommand(String.valueOf(i) + String.valueOf(j));
+				button.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent ae) {
+						timePlayed = timePlayed - 100;
+						timerTop.setText("Score: " + timePlayed);
+						JButton but = (JButton) ae.getSource();
+						pressed = but.getActionCommand();
+						System.out.println(pressed);
+						if (whichPressed == 0) {
+							pressed1 = pressed;
+							whichPressed = 1;
+							but.setBackground(Color.GREEN);
+						} else if (whichPressed == 1) {
+							pressed2 = pressed;
+							whichPressed = 0;
+							checkFound(pressed1, pressed2);
+							words.setText(wordsList[0] + "   " + wordsList[1] + "   " + wordsList[2] + "   "
+									+ wordsList[3] + "   " + wordsList[4] + "   " + wordsList[5]);
+							but.setBackground(Color.GREEN);
+						}
 
-       
+					}
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(gridSize, gridSize));
-        for (int i = 0; i < gridSize; i++)
-        {
-            for (int j = 0; j < gridSize; j++)
-            {
-                JButton button = new JButton(searchtable[j][i]);
-                button.setPreferredSize(new Dimension(50, 50));
-                button.setActionCommand(String.valueOf(i)+String.valueOf(j));
-                button.addActionListener(new ActionListener()
-                {
-                    public void actionPerformed(ActionEvent ae)
-                    {
-                        JButton but = (JButton) ae.getSource();
-                        pressed = but.getActionCommand();    
-                        System.out.println(pressed);
-                        if(whichPressed == 0)
-                        {
-                        	pressed1 = pressed;
-                        	whichPressed = 1;
-                        }
-                        else if(whichPressed == 1)
-                        {
-                        	pressed2 = pressed;
-                        	whichPressed = 0;
-                        	checkFound(pressed1,pressed2);
-                        	words.setText(wordsList[0] + "   " + wordsList[1] + "   " + wordsList[2] + "   " + wordsList[3] + "   " + wordsList[4] + "   " + wordsList[5]);
-                        }
-                        
-                    }
-                });
-                buttonPanel.add(button);
-            }
-        }
-        contentPane.add(buttonPanel, BorderLayout.CENTER);
+				});
+				buttonPanel.add(button);
+			}
+		}
+		contentPane.add(buttonPanel, BorderLayout.CENTER);
 
-        setContentPane(contentPane);
-        pack();
-        setLocationByPlatform(true);
-        setVisible(true);
-        
-        
-        String tempSearch = wordsList[0] + "   " + wordsList[1] + "   " + wordsList[2] + "   " + wordsList[3] + "   " + wordsList[4] + "   " + wordsList[5];
-        
-        words.setText(tempSearch);
-        contentPane.add(words, BorderLayout.SOUTH);
-        final JLabel timerTop = new JLabel("Time:" + timePlayed, SwingConstants.RIGHT);
-        contentPane.add(timerTop, BorderLayout.NORTH);
-        gameTimer = new Timer(1000, new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        		timePlayed += 1;
-        		timerTop.setText("Time:" + timePlayed);
-        	}
-        });
-        
-        
-        
+		setContentPane(contentPane);
+		pack();
+		setLocationByPlatform(true);
+		setVisible(true);
+
+		String tempSearch = wordsList[0] + "   " + wordsList[1] + "   " + wordsList[2] + "   " + wordsList[3] + "   "
+				+ wordsList[4] + "   " + wordsList[5];
+
+		words.setText(tempSearch);
+		contentPane.add(words, BorderLayout.SOUTH);
+		timerTop = new JLabel("Score:" + timePlayed, SwingConstants.RIGHT);
+		final JLabel introMessage = new JLabel("Press the first then last letter to select!", SwingConstants.LEFT);
+		JPanel topScreen = new JPanel();
+		topScreen.add(introMessage, BorderLayout.WEST);
+		topScreen.add(timerTop, BorderLayout.EAST);
+		contentPane.add(topScreen, BorderLayout.NORTH);
+
 	}
-	
+
 	public void updateList(int i) {
-    	if(i > 5)
-    	{
-    		return;
-    	}
-    	else {
-    		wordsList[i] = "";
-    		wordFound[i] = 1;
-    	}
-    }
-	
-	public void checkFound(String a, String b)
-	{
-		String h1 = a.substring(0,1);
-		String h2 = a.substring(1,2);
-		String h3 = b.substring(0,1);
-		String h4 = b.substring(1,2);
-		System.out.println(h1+h2+h3+h4);
-		int selection = Integer.parseInt(5 + h1+h2+h3+h4);
-		if(selection == 51315)
-		{
+		if (i > 5) {
+			return;
+		} else {
+			wordsList[i] = "";
+			wordFound[i] = 1;
+		}
+	}
+
+	public void checkFound(String a, String b) {
+		String h1 = a.substring(0, 1);
+		String h2 = a.substring(1, 2);
+		String h3 = b.substring(0, 1);
+		String h4 = b.substring(1, 2);
+		System.out.println(h1 + h2 + h3 + h4);
+		int selection = Integer.parseInt(5 + h1 + h2 + h3 + h4);
+		if (selection == 51315) {
 			updateList(3);
-		}
-		else if(selection == 54400)
-		{
+		} else if (selection == 54400) {
 			updateList(0);
-		}
-		else if(selection == 54414)
-		{
+		} else if (selection == 54414) {
 			updateList(2);
-		}
-		else if(selection == 50300)
-		{
+		} else if (selection == 50300) {
 			updateList(1);
-		}
-		else if(selection == 54105)
-		{
+		} else if (selection == 54105) {
 			updateList(4);
-		}
-		else if(selection == 55450)
-		{
+		} else if (selection == 55450) {
 			updateList(5);
 		}
 		int sum = 0;
-		for(int p : wordFound)
+		for (int p : wordFound)
 			sum += p;
-		if(sum == 6)
-		{
-			JOptionPane.showMessageDialog(null,"You Won!");
+		if (sum == 6) {
+			JOptionPane.showMessageDialog(null, "You Won!");
 			gameDone = true;
 			endofgame e1 = new endofgame();
-			e1.endOfGameWindow(400, username1);
+			e1.endOfGameWindow(timePlayed, Users.getUser(), 2);
 			this.dispose();
 		}
 	}

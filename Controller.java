@@ -1,4 +1,3 @@
-package gameHub;
 /*@author: Ryan Cook
  *@version 1.0
  *@since   4/19/16
@@ -146,6 +145,7 @@ public class Controller {
 	
 	public void setGames(int whoWon)
 	{
+		
 		endofgame gameend = new endofgame();
 		if(whoWon == 1)
 			win++;
@@ -153,7 +153,7 @@ public class Controller {
 			lost++;
 		else
 			tie++;
-		gameend.endOfGameWindow(win, "user");
+		gameend.endOfGameWindow(win, Users.getUser() , 1);
 	}
 	
 	

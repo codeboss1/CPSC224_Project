@@ -1,4 +1,3 @@
-package gameHub;
 
 /*@author: Ryan Cook
  *@version 1.0

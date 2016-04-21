@@ -30,7 +30,7 @@ public class endofgame{
 	}
 
 	
-	public void endOfGameWindow(int userScore, final String name)
+	public void endOfGameWindow(int userScore, final String name, final int game_id)
 	{
 		setScore(userScore);
 		setUser(name);
@@ -63,8 +63,25 @@ public class endofgame{
             public void actionPerformed(ActionEvent ae)
             {
             	play = true;
-            	wordsearch a = new wordsearch();
-            	a.createBoard(username);
+            	
+            	if (game_id == 1){
+    		    	new MainFrame(3); 
+            	}
+            	
+            	if (game_id == 2){
+        		    	wordsearch w1 = new wordsearch();
+        				w1.createBoard("tester");  
+            	}
+            	
+            	if (game_id == 3){
+            		try {
+						ISpy_Main.main(null);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            	}
+            	
             	thisframe.dispose();
             }
         });

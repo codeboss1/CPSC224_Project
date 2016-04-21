@@ -1,9 +1,8 @@
-package gameHub;
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -29,18 +28,42 @@ public abstract class mainMenu extends JFrame implements ActionListener{
 		tictactoeButton.addActionListener(new ActionListener(){
 		    @Override
 		    public void actionPerformed(ActionEvent ev) {
-		    	new MainFrame(1);                
+		    	new MainFrame(3);                
 		    }
 		});
 		wordSearchButton.addActionListener(new ActionListener(){
 		    @Override
 		    public void actionPerformed(ActionEvent ev) {
 		    	wordsearch w1 = new wordsearch();
-				w1.createBoard();                   
+				w1.createBoard("tester");                   
+		    }
+		});
+		ISpyButton.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ev) {
+		    	try {
+					ISpy_Main.main(null);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}                  
 		    }
 		});
 		
+		highScoresButton.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ev) {
+		    	Highscores.getScores();
+		    }
+		});
 		
+		userbutton.addActionListener(new ActionListener(){
+		    @Override
+		    public void actionPerformed(ActionEvent ev) {
+		    	Users use = new Users();
+		    	use.setUser();
+		    }
+		});
 	}
 	
 

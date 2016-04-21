@@ -1,4 +1,3 @@
-package gameHub;
 /*@author: Ryan Cook
  *@version 1.0
  *@since   4/19/16
@@ -16,8 +15,8 @@ public class XOButton extends JButton {
 		
 	public XOButton() 
 	{
-		O = new ImageIcon("C:/jdk1.8.0_66/Homework/Group/src/Oimage.jpg");
-		X = new ImageIcon("C:/jdk1.8.0_66/Homework/Group/src/Ximage.jpg");
+		O = new ImageIcon("C:/Users/soare/java/workspace/Project_all/src/Oimage.jpg");
+		X = new ImageIcon("C:/Users/soare/java/workspace/Project_all/src/Ximage.jpg");
 		
 	}
 	
